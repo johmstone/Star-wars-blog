@@ -4,7 +4,7 @@ import { DropDownFav } from "./dropdownfav";
 
 export const Navbar = () => {
 	const styleimg = {
-		"max-height": "3rem"
+		maxHeight: "3rem"
 	};
 	return (
 		<nav className="navbar navbar-dark bg-dark mb-3 px-5">
