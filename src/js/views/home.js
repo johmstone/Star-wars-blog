@@ -34,7 +34,7 @@ export const Home = () => {
 			<div className="row">
 				{Peoplelist.map((people, i) => (
 					<div className="cardhorizontal" key={i}>
-						<CardCharacters Info={people} />
+						<CardCharacters PeopleID={people.uid} />
 					</div>
 				))}
 			</div>
