@@ -32,11 +32,13 @@ export const CardPlanets = props => {
 	const [Favorite, setFavorite] = useState(false);
 
 	let URL = "https://www.swapi.tech/api/";
-	let detailURL = "Planets/details/" + props.PlanetID;
+	let detailURL = "planets/details/" + props.PlanetID;
 
-	async function fnPeople() {
-		const response = await fetch(URL + "planets/" + props.PlanetID)
-			//const response = await fetch("https://raw.githubusercontent.com/johmstone/files/main/JSONResultPlanetDetail.json")
+	async function fnPlanet() {
+		//const response = await fetch(URL + "planets/" + props.PlanetID)
+		const response = await fetch(
+			"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPlanetDetail.json"
+		)
 			.then(res => {
 				if (res.status == 200) {
 					return res.json();
@@ -49,7 +51,7 @@ export const CardPlanets = props => {
 	}
 
 	useEffect(() => {
-		fnPeople();
+		fnPlanet();
 	}, []);
 
 	const ChangeFavorite = () => {
@@ -61,7 +63,21 @@ export const CardPlanets = props => {
 	};
 	return (
 		<div className="card m-3" style={cardStyle}>
-			<img src="..." className="card-img-top" alt="..." />
+			<svg
+				className="bd-placeholder-img card-img-top"
+				width="100%"
+				height="180"
+				xmlns="http://www.w3.org/2000/svg"
+				preserveAspectRatio="xMidYMid slice"
+				focusable="false"
+				role="img"
+				aria-label="Placeholder: Image cap">
+				<title>Placeholder</title>
+				<rect width="100%" height="100%" fill="#868e96" />
+				<text x="35%" y="50%" fill="#dee2e6" dy=".3em">
+					Image cap
+				</text>
+			</svg>
 			<div className="card-body">
 				<h5 className="card-title">{Planet.properties.name}</h5>
 				<p className="card-text text-wrap m-0">Climate: {Planet.properties.climate}</p>
