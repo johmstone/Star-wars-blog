@@ -32,13 +32,13 @@ export const CardCharacters = props => {
 	const [Favorite, setFavorite] = useState(false);
 
 	let URL = "https://www.swapi.tech/api/";
-	let detailURL = "/details/" + props.PeopleID;
+	let detailURL = "People/details/" + props.PeopleID;
 
 	async function fnPeople() {
-		//const result = await fetch(URL + "people/" + props.PeopleID)
-		const response = await fetch(
-			"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPeopleDetail.json"
-		)
+		//const response = await fetch(URL + "people/" + props.PeopleID)
+		 const response = await fetch(
+		/ 	"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPeopleDetail.json"
+		 )
 			.then(res => {
 				if (res.status == 200) {
 					return res.json();
