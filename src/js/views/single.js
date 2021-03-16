@@ -53,7 +53,7 @@ export const Single = props => {
 	const [Planet, setPlanet] = useState(initialPlanet);
 
 	async function fnPeople() {
-		//const response = await fetch(URL + "people/" + props.PeopleID)
+		//const response = await fetch(URL + "people/" + params.theid)
 		const response = await fetch(
 			"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPeopleDetail.json"
 		)
@@ -69,7 +69,7 @@ export const Single = props => {
 	}
 
 	async function fnPlanet() {
-		//const response = await fetch(URL + "planets/" + props.PlanetID)
+		//const response = await fetch(URL + "planets/" + params.theid)
 		const response = await fetch(
 			"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPlanetDetail.json"
 		)
@@ -94,117 +94,125 @@ export const Single = props => {
 
 	if (params.type === "people") {
 		return (
-			<div className="jumbotron text-font-base">
-				<div className="row row-cols-2">
-					<div className="col-5">
-						<svg
-							className="bd-placeholder-img card-img-top"
-							width="100%"
-							height="100%"
-							xmlns="http://www.w3.org/2000/svg"
-							preserveAspectRatio="xMidYMid slice"
-							focusable="false"
-							role="img"
-							aria-label="Placeholder: Image cap">
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="#868e96" />
-							<text x="35%" y="50%" fill="#dee2e6" dy=".3em">
-								Image cap
-							</text>
-						</svg>
+			<div className="container text-font-base">
+				<div className="jumbotron">
+					<div className="row row-cols-2">
+						<div className="col-5">
+							<svg
+								className="bd-placeholder-img card-img-top"
+								width="100%"
+								height="100%"
+								xmlns="http://www.w3.org/2000/svg"
+								preserveAspectRatio="xMidYMid slice"
+								focusable="false"
+								role="img"
+								aria-label="Placeholder: Image cap">
+								<title>Placeholder</title>
+								<rect width="100%" height="100%" fill="#868e96" />
+								<text x="35%" y="50%" fill="#dee2e6" dy=".3em">
+									Image cap
+								</text>
+							</svg>
+						</div>
+						<div className="col-7">
+							<h1 className="text-danger">
+								{People.properties.name} - {params.theid}
+							</h1>
+							<p>
+								Lorem ipsum dolor sit amet consectetur adipiscing elit vehicula, sagittis vestibulum
+								fusce cursus velit class varius, donec a nunc accumsan aptent diam suspendisse.
+								Fringilla quisque fames fusce nostra blandit commodo cras nec, aliquam ante est vivamus
+								taciti lacinia mollis aliquet aptent, nunc etiam lobortis dui dictum netus feugiat.
+								Congue cursus cum tristique lacinia consequat volutpat, euismod fringilla pretium hac
+								conubia scelerisque, auctor interdum sociosqu mauris per.
+							</p>
+						</div>
 					</div>
-					<div className="col-7">
-						<h1 className="text-danger">{People.properties.name}</h1>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipiscing elit vehicula, sagittis vestibulum fusce
-							cursus velit class varius, donec a nunc accumsan aptent diam suspendisse. Fringilla quisque
-							fames fusce nostra blandit commodo cras nec, aliquam ante est vivamus taciti lacinia mollis
-							aliquet aptent, nunc etiam lobortis dui dictum netus feugiat. Congue cursus cum tristique
-							lacinia consequat volutpat, euismod fringilla pretium hac conubia scelerisque, auctor
-							interdum sociosqu mauris per.
-						</p>
+					<hr />
+					<div className="row">
+						<table className="table table-responsive table-borderless">
+							<tbody>
+								<tr className="text-danger font-weight-bold">
+									<td>Name</td>
+									<td className="text-center">Birth Year</td>
+									<td className="text-center">Gender</td>
+									<td className="text-center">Height</td>
+									<td className="text-center">Skin Color</td>
+									<td className="text-center">Eye Color</td>
+								</tr>
+								<tr>
+									<td className="text-center">{People.properties.name}</td>
+									<td className="text-center">{People.properties.birth_year}</td>
+									<td className="text-center">{People.properties.gender}</td>
+									<td className="text-center">{People.properties.height}</td>
+									<td className="text-center">{People.properties.skin_color}</td>
+									<td className="text-center">{People.properties.eye_color}</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
-				</div>
-				<hr />
-				<div className="row">
-					<table className="table table-responsive table-borderless">
-						<tbody>
-							<tr className="text-danger font-weight-bold">
-								<td>Name</td>
-								<td className="text-center">Birth Year</td>
-								<td className="text-center">Gender</td>
-								<td className="text-center">Height</td>
-								<td className="text-center">Skin Color</td>
-								<td className="text-center">Eye Color</td>
-							</tr>
-							<tr>
-								<td className="text-center">{People.properties.name}</td>
-								<td className="text-center">{People.properties.birth_year}</td>
-								<td className="text-center">{People.properties.gender}</td>
-								<td className="text-center">{People.properties.height}</td>
-								<td className="text-center">{People.properties.skin_color}</td>
-								<td className="text-center">{People.properties.eye_color}</td>
-							</tr>
-						</tbody>
-					</table>
 				</div>
 			</div>
 		);
 	} else {
 		return (
-			<div className="jumbotron text-font-base">
-				<div className="row row-cols-2">
-					<div className="col-5">
-						<svg
-							className="bd-placeholder-img card-img-top"
-							width="100%"
-							height="100%"
-							xmlns="http://www.w3.org/2000/svg"
-							preserveAspectRatio="xMidYMid slice"
-							focusable="false"
-							role="img"
-							aria-label="Placeholder: Image cap">
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="#868e96" />
-							<text x="35%" y="50%" fill="#dee2e6" dy=".3em">
-								Image cap
-							</text>
-						</svg>
+			<div className="container text-font-base">
+				<div className="jumbotron">
+					<div className="row row-cols-2">
+						<div className="col-5">
+							<svg
+								className="bd-placeholder-img card-img-top"
+								width="100%"
+								height="100%"
+								xmlns="http://www.w3.org/2000/svg"
+								preserveAspectRatio="xMidYMid slice"
+								focusable="false"
+								role="img"
+								aria-label="Placeholder: Image cap">
+								<title>Placeholder</title>
+								<rect width="100%" height="100%" fill="#868e96" />
+								<text x="35%" y="50%" fill="#dee2e6" dy=".3em">
+									Image cap
+								</text>
+							</svg>
+						</div>
+						<div className="col-7">
+							<h1 className="text-danger">
+								{Planet.properties.name} - {params.theid}
+							</h1>
+							<p>
+								Lorem ipsum dolor sit amet consectetur adipiscing elit vehicula, sagittis vestibulum
+								fusce cursus velit class varius, donec a nunc accumsan aptent diam suspendisse.
+								Fringilla quisque fames fusce nostra blandit commodo cras nec, aliquam ante est vivamus
+								taciti lacinia mollis aliquet aptent, nunc etiam lobortis dui dictum netus feugiat.
+								Congue cursus cum tristique lacinia consequat volutpat, euismod fringilla pretium hac
+								conubia scelerisque, auctor interdum sociosqu mauris per.
+							</p>
+						</div>
 					</div>
-					<div className="col-7">
-						<h1 className="text-danger">{Planet.properties.name}</h1>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipiscing elit vehicula, sagittis vestibulum fusce
-							cursus velit class varius, donec a nunc accumsan aptent diam suspendisse. Fringilla quisque
-							fames fusce nostra blandit commodo cras nec, aliquam ante est vivamus taciti lacinia mollis
-							aliquet aptent, nunc etiam lobortis dui dictum netus feugiat. Congue cursus cum tristique
-							lacinia consequat volutpat, euismod fringilla pretium hac conubia scelerisque, auctor
-							interdum sociosqu mauris per.
-						</p>
+					<hr />
+					<div className="row">
+						<table className="table table-responsive table-borderless">
+							<tbody>
+								<tr className="text-danger font-weight-bold">
+									<td>Name</td>
+									<td className="text-center">Climate</td>
+									<td className="text-center">Population</td>
+									<td className="text-center">Orbital Period</td>
+									<td className="text-center">Rotation Period</td>
+									<td className="text-center">Diameter</td>
+								</tr>
+								<tr>
+									<td className="text-center">{Planet.properties.name}</td>
+									<td className="text-center">{Planet.properties.climate}</td>
+									<td className="text-center">{Planet.properties.population}</td>
+									<td className="text-center">{Planet.properties.orbital_period}</td>
+									<td className="text-center">{Planet.properties.rotation_period}</td>
+									<td className="text-center">{Planet.properties.diameter}</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
-				</div>
-				<hr />
-				<div className="row">
-					<table className="table table-responsive table-borderless">
-						<tbody>
-							<tr className="text-danger font-weight-bold">
-								<td>Name</td>
-								<td className="text-center">Climate</td>
-								<td className="text-center">Population</td>
-								<td className="text-center">Orbital Period</td>
-								<td className="text-center">Rotation Period</td>
-								<td className="text-center">Diameter</td>
-							</tr>
-							<tr>
-								<td className="text-center">{Planet.properties.name}</td>
-								<td className="text-center">{Planet.properties.climate}</td>
-								<td className="text-center">{Planet.properties.population}</td>
-								<td className="text-center">{Planet.properties.orbital_period}</td>
-								<td className="text-center">{Planet.properties.rotation_period}</td>
-								<td className="text-center">{Planet.properties.diameter}</td>
-							</tr>
-						</tbody>
-					</table>
 				</div>
 			</div>
 		);

@@ -1,6 +1,7 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext } from "react";
 import PropType from "prop-types";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 let initialPlanet = {
 	properties: {
@@ -28,8 +29,8 @@ export const CardPlanets = props => {
 		width: "20rem"
 	};
 
+	const { store, actions } = useContext(Context);
 	const [Planet, setPlanet] = useState(initialPlanet);
-	const [Favorite, setFavorite] = useState(false);
 
 	let URL = "https://www.swapi.tech/api/";
 	let detailURL = "planets/details/" + props.PlanetID;
@@ -45,9 +46,10 @@ export const CardPlanets = props => {
 					//console.log(res.json());
 				}
 			})
+			.then(response => {
+				setPlanet(response.result);
+			})
 			.catch(err => console.error(err));
-
-		setPlanet(response.result);
 	}
 
 	useEffect(() => {
@@ -79,7 +81,9 @@ export const CardPlanets = props => {
 				</text>
 			</svg>
 			<div className="card-body">
-				<h5 className="card-title">{Planet.properties.name}</h5>
+				<h5 className="card-title">
+					{Planet.properties.name} - {props.PlanetID}
+				</h5>
 				<p className="card-text text-wrap m-0">Climate: {Planet.properties.climate}</p>
 				<p className="card-text text-wrap m-0">Terrain: {Planet.properties.terrain}</p>
 				<p className="card-text text-wrap m-0">Population: {Planet.properties.population}</p>
@@ -87,8 +91,18 @@ export const CardPlanets = props => {
 					<Link to={detailURL} className="btn btn-outline-primary text-primary">
 						Learn more!
 					</Link>
-					<a className="btn btn-outline-warning text-warning float-right" onClick={() => ChangeFavorite()}>
-						{Favorite ? <i className="fas fa-heart" /> : <i className="far fa-heart" />}
+					<a
+						className="btn btn-outline-warning text-warning float-right"
+						onClick={() => actions.changeFavoritePlanet(props.PlanetID)}>
+						{store.planets.map((item, i) => {
+							if (item.uid === props.PlanetID) {
+								if (item.favorite) {
+									return <i className="fas fa-heart" key={i} />;
+								} else {
+									return <i className="far fa-heart" key={i} />;
+								}
+							}
+						})}
 					</a>
 				</div>
 			</div>

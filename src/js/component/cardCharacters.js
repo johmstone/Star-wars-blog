@@ -1,6 +1,7 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext } from "react";
 import PropType from "prop-types";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 let initialPeople = {
 	properties: {
@@ -28,8 +29,8 @@ export const CardCharacters = props => {
 		width: "18rem"
 	};
 
+	const { store, actions } = useContext(Context);
 	const [People, setPeople] = useState(initialPeople);
-	const [Favorite, setFavorite] = useState(false);
 
 	let URL = "https://www.swapi.tech/api/";
 	let detailURL = "people/details/" + props.PeopleID;
@@ -42,12 +43,14 @@ export const CardCharacters = props => {
 			.then(res => {
 				if (res.status == 200) {
 					return res.json();
-					//console.log(res.json());
+					console.log(res.json());
 				}
 			})
+			.then(response => {
+				setPeople(response.result);
+			})
 			.catch(err => console.error(err));
-
-		setPeople(response.result);
+		//console.log(response);
 	}
 
 	useEffect(() => {
@@ -79,7 +82,9 @@ export const CardCharacters = props => {
 				</text>
 			</svg>
 			<div className="card-body">
-				<h5 className="card-title">{People.properties.name}</h5>
+				<h5 className="card-title">
+					{People.properties.name} - {props.PeopleID}
+				</h5>
 				<p className="card-text text-wrap m-0">Gender: {People.properties.gender}</p>
 				<p className="card-text text-wrap m-0">Hair Color: {People.properties.hair_color}</p>
 				<p className="card-text text-wrap m-0">Eye-Color: {People.properties.eye_color}</p>
@@ -87,8 +92,18 @@ export const CardCharacters = props => {
 					<Link to={detailURL} className="btn btn-outline-primary text-primary">
 						Learn more!
 					</Link>
-					<a className="btn btn-outline-warning text-warning float-right" onClick={() => ChangeFavorite()}>
-						{Favorite ? <i className="fas fa-heart" /> : <i className="far fa-heart" />}
+					<a
+						className="btn btn-outline-warning text-warning float-right"
+						onClick={() => actions.changeFavoritePeople(props.PeopleID)}>
+						{store.people.map((item, i) => {
+							if (item.uid === props.PeopleID) {
+								if (item.favorite) {
+									return <i className="fas fa-heart" key={i} />;
+								} else {
+									return <i className="far fa-heart" key={i} />;
+								}
+							}
+						})}
 					</a>
 				</div>
 			</div>
