@@ -36,10 +36,10 @@ export const CardPlanets = props => {
 	let detailURL = "planets/details/" + props.PlanetID;
 
 	async function fnPlanet() {
-		//const response = await fetch(URL + "planets/" + props.PlanetID)
-		const response = await fetch(
-			"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPlanetDetail.json"
-		)
+		const response = await fetch(URL + "planets/" + props.PlanetID)
+			// const response = await fetch(
+			// 	"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPlanetDetail.json"
+			// )
 			.then(res => {
 				if (res.status == 200) {
 					return res.json();
@@ -56,13 +56,6 @@ export const CardPlanets = props => {
 		fnPlanet();
 	}, []);
 
-	const ChangeFavorite = () => {
-		if (Favorite) {
-			setFavorite(false);
-		} else {
-			setFavorite(true);
-		}
-	};
 	return (
 		<div className="card m-3" style={cardStyle}>
 			<svg
@@ -81,9 +74,7 @@ export const CardPlanets = props => {
 				</text>
 			</svg>
 			<div className="card-body">
-				<h5 className="card-title">
-					{Planet.properties.name} - {props.PlanetID}
-				</h5>
+				<h5 className="card-title">{Planet.properties.name}</h5>
 				<p className="card-text text-wrap m-0">Climate: {Planet.properties.climate}</p>
 				<p className="card-text text-wrap m-0">Terrain: {Planet.properties.terrain}</p>
 				<p className="card-text text-wrap m-0">Population: {Planet.properties.population}</p>

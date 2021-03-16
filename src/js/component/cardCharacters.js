@@ -36,10 +36,10 @@ export const CardCharacters = props => {
 	let detailURL = "people/details/" + props.PeopleID;
 
 	async function fnPeople() {
-		//const response = await fetch(URL + "people/" + props.PeopleID)
-		const response = await fetch(
-			"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPeopleDetail.json"
-		)
+		const response = await fetch(URL + "people/" + props.PeopleID)
+			// const response = await fetch(
+			// 	"https://raw.githubusercontent.com/johmstone/files/main/JSONResultPeopleDetail.json"
+			// )
 			.then(res => {
 				if (res.status == 200) {
 					return res.json();
@@ -57,13 +57,6 @@ export const CardCharacters = props => {
 		fnPeople();
 	}, []);
 
-	const ChangeFavorite = () => {
-		if (Favorite) {
-			setFavorite(false);
-		} else {
-			setFavorite(true);
-		}
-	};
 	return (
 		<div className="card m-3" style={cardStyle}>
 			<svg
@@ -82,9 +75,7 @@ export const CardCharacters = props => {
 				</text>
 			</svg>
 			<div className="card-body">
-				<h5 className="card-title">
-					{People.properties.name} - {props.PeopleID}
-				</h5>
+				<h5 className="card-title">{People.properties.name}</h5>
 				<p className="card-text text-wrap m-0">Gender: {People.properties.gender}</p>
 				<p className="card-text text-wrap m-0">Hair Color: {People.properties.hair_color}</p>
 				<p className="card-text text-wrap m-0">Eye-Color: {People.properties.eye_color}</p>

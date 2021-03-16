@@ -40,11 +40,9 @@ export const DropDownFav = props => {
 					{store.people.map((item, i) => {
 						if (item.favorite) {
 							return (
-								<div className="row my-0 ml-0 mr-2">
+								<div className="row my-0 ml-0 mr-2" key={"people" + i}>
 									<Link to={"/people/details/" + item.uid} replace>
-										<a className="dropdown-item pl-2" key={i}>
-											{item.name}
-										</a>
+										<a className="dropdown-item pl-2">{item.name}</a>
 									</Link>
 									<i
 										className="far fa-trash-alt mt-2 ml-auto mr-0"
@@ -58,11 +56,9 @@ export const DropDownFav = props => {
 					{store.planets.map((item, i) => {
 						if (item.favorite) {
 							return (
-								<div className="row my-0 ml-0 mr-2">
+								<div className="row my-0 ml-0 mr-2" key={"planet" + i}>
 									<Link to={"/planets/details/" + item.uid} replace>
-										<a className="dropdown-item pl-2" key={i}>
-											{item.name}
-										</a>
+										<a className="dropdown-item pl-2">{item.name}</a>
 									</Link>
 									<i
 										className="far fa-trash-alt mt-2  ml-auto mr-0"

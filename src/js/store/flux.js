@@ -1,34 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			people: [
-				{
-					uid: "1",
-					name: "Tatooine",
-					url: "https://www.swapi.tech/api/planets/1",
-					favorite: false
-				},
-				{
-					uid: "1",
-					name: "Tatooine",
-					url: "https://www.swapi.tech/api/planets/1",
-					favorite: false
-				}
-			],
-			planets: [
-				{
-					uid: "1",
-					name: "Tatooine",
-					url: "https://www.swapi.tech/api/planets/1",
-					favorite: false
-				},
-				{
-					uid: "1",
-					name: "Tatooine",
-					url: "https://www.swapi.tech/api/planets/1",
-					favorite: false
-				}
-			]
+			people: [],
+			planets: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
